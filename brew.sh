@@ -51,7 +51,7 @@ brew install wget --with-iri
 # Install other useful binaries.
 # brew install ack
 #brew install exiv2
-brew install git
+# brew install git
 # brew install imagemagick --with-webp
 # brew install lua
 # brew install lynx
