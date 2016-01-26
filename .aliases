@@ -1,3 +1,9 @@
+# docker
+alias dbind="eval $(docker-machine env default)"
+
+# npm
+alias start="npm start"
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
