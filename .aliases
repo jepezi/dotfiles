@@ -1,6 +1,3 @@
-# docker
-alias dbind="eval $(docker-machine env default)"
-
 # npm
 alias start="npm start"
 
@@ -20,6 +17,47 @@ alias p="cd ~/projects"
 alias g="git"
 alias h="history"
 alias j="jobs"
+
+# docker
+alias dk="docker"
+alias dm="docker-machine"
+alias dc="docker-compose"
+alias dms="docker-machine start default"
+alias dme="docker-machine env default"
+
+dlog() {
+    docker logs "${PWD##*/}_$1_1"
+}
+# eg `dlog api`
+
+dexec() {
+    # (for docker-compose containers)
+    # because it's tedious having to type
+    # `docker exec -it myproject_myservice_1 bash`
+    # every time I want a shell into a running container
+    if [ "$#" -gt 1 ]; then
+        arg="$@"
+    else
+        arg="bash"
+    fi
+    docker exec -it "${PWD##*/}_$1_1" $arg
+}
+# eg `dcexec myservice`
+
+docker-machine-env() {
+	eval $(docker-machine env $1)
+}
+
+docker-machine-use() {
+	docker-machine start $1
+	docker-machine-env $1
+}
+alias dmuse='docker-machine-use'
+# eg `dmuse default`
+
+dprune(){
+	docker rmi $(docker images -f "dangling=true" -q)
+}
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
