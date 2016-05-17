@@ -66,7 +66,7 @@ brew install wget --with-iri
 
 # Install Node.js. Note: this installs `npm` too, using the recommended
 # installation method.
-brew install node
+# brew install node
 
 # Remove outdated versions from the cellar.
 brew cleanup
